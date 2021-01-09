@@ -1,12 +1,19 @@
 <template>
   <div class="post-list__item">
-    PostListItem
+    <h3>PostListItem</h3>
+    {{ post }}
   </div>
 </template>
 
 <script>
 export default {
-  name: "PostListItem"
+  name: "PostListItem",
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <PostList />
+    <PostList :posts="posts" />
   </div>
 </template>
 
@@ -13,6 +13,21 @@ export default {
   name: "Home",
   components: {
     PostList
+  },
+  data() {
+    return {
+      statuses: [
+        {
+          id: 1,
+          message: "Hello"
+        }
+      ]
+    };
+  },
+  computed: {
+    posts() {
+      return this.statuses;
+    }
   }
 };
 </script>

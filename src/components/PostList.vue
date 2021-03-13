@@ -1,7 +1,11 @@
 <template>
   <div class="post-list">
     <h2>PostList</h2>
-    <PostListItem v-for="post in posts" :key="post" :post="post" />
+    <PostListItem
+      v-for="group in groups"
+      :key="`group_${getGroupId(group)}`"
+      :posts="group"
+    />
   </div>
 </template>
 
@@ -15,6 +19,27 @@ export default {
     posts: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    getGroupId: group => {
+      group[0] ? group[0].groupId : 0;
+    }
+  },
+  computed: {
+    groups() {
+      const groups = this.posts.reduce((acc, cur) => {
+        (acc[cur.groupId] || (acc[cur.groupId] = [])).push(cur);
+        return acc;
+      }, {});
+      const getOrder = post => post.groupOrder;
+      const getEarliest = group =>
+        group.reduce((a, b) => (getOrder(a) < getOrder(b) ? a : b));
+      return Object.values(groups).sort((groupA, groupB) => {
+        const dateA = new Date(getEarliest(groupA).postTime);
+        const dateB = new Date(getEarliest(groupB).postTime);
+        return dateB - dateA;
+      });
     }
   }
 };

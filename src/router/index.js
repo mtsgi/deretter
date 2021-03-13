@@ -23,12 +23,17 @@ const routes = [
       import(/* webpackChunkName: "settings" */ "../views/Settings.vue")
   },
   {
-    path: "/user/:id",
+    path: "/users/:id",
     component: () => import(/* webpackChunkName: "user" */ "../views/User.vue")
   },
   {
-    path: "/post/:id",
+    path: "/posts/:id",
     component: () => import(/* webpackChunkName: "post" */ "../views/Post.vue")
+  },
+  {
+    path: "/hashtags/:id",
+    component: () =>
+      import(/* webpackChunkName: "hashtag" */ "../views/Hashtag.vue")
   }
 ];
 

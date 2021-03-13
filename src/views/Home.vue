@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     posts() {
-      return this.statuses;
+      return this.$root.statuses;
     }
   }
 };

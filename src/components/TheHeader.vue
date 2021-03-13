@@ -1,14 +1,15 @@
 <template>
   <div>
-    <v-app-bar>
+    <v-app-bar fixed color="#93CEF1" hide-on-scroll>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>deretter</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+        <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list nav>
         <router-link
           v-for="([path, icon, text], i) in links"

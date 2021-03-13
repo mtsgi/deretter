@@ -1,7 +1,7 @@
 <template>
   <div class="post-list__item">
     <h3>PostListItem</h3>
-    {{ post }}
+    {{ sortedPosts }}
   </div>
 </template>
 
@@ -9,9 +9,15 @@
 export default {
   name: "PostListItem",
   props: {
-    post: {
-      type: Object,
+    posts: {
+      type: Array,
       required: true
+    }
+  },
+  computed: {
+    sortedPosts() {
+      // TODO
+      return this.posts;
     }
   }
 };

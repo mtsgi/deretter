@@ -1,19 +1,37 @@
-<script setup>
-// your setup script
+<script lang="ts" setup>
+  import { useConfig } from '../composables/config';
+  const { config } = useConfig();
+  import { usePosts } from '../composables/posts';
+  const { posts } = usePosts();
+  
+  // API URL
+  const derepoAPI = computed(() => {
+    return `${config.value.api_base}derepo/statuses?maxResults=100`;
+  });
+
+  console.warn("Posts", posts.value);
+
+  if (!posts.value) {
+    // Fetch TL Data
+    await fetch(derepoAPI.value, {
+      method: "GET",
+      mode: "cors"
+    })
+      .then(res => res.json())
+      .then(data => {
+        posts.value = data;
+      });
+  }
 </script>
 
 <template>
   <main>
-    <ul>
-      <li v-for="n in 4" :key="n">
-        <NuxtLink :to="`/posts/${n}`">Post {{ n }}</NuxtLink>
-      </li>
-    </ul>
-    <ul>
-      <li v-for="n in 4" :key="n">
-        <NuxtLink :to="`/users/${n}`">User {{ n }}</NuxtLink>
-      </li>
-    </ul>
+    <h2>Posts</h2>
+
+    <div v-for="post in posts">
+      <strong>{{ post.name }}</strong>
+      {{ post.message }}
+    </div>
 
     <Head>
       <Title>TOP | deretter</Title>

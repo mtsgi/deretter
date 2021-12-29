@@ -25,7 +25,7 @@
     <footer>
       <h3>Privacy Policy</h3>
       {{ config.privacy_policy }}
-      <h3>Copyrights</h3>
+      <h3>Copyright</h3>
       {{ config.copyrights }}
       <h3>About</h3>
       {{ config.about }}

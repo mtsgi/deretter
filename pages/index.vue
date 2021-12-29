@@ -9,7 +9,7 @@
     return `${config.value.api_base}derepo/statuses?maxResults=100`;
   });
 
-  console.warn("Posts", posts.value);
+  console.log("Posts", posts.value);
 
   if (!posts.value) {
     // Fetch TL Data
@@ -28,10 +28,7 @@
   <main>
     <h2>Posts</h2>
 
-    <div v-for="post in posts">
-      <strong>{{ post.name }}</strong>
-      {{ post.message }}
-    </div>
+    <Post v-for="post in posts" :post="post" />
 
     <Head>
       <Title>TOP | deretter</Title>

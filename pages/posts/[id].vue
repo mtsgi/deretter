@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import { usePosts } from '../../composables/posts';
-const { posts } = usePosts();
+const { getPost } = usePosts();
 
 const route = useRoute();
 
-const post = posts.value.find(post => String(post.id) === route.params.id)
+const post = await getPost(`derepo/statuses/${route.params.id}`);
 </script>
 
 <template>
   <p>
     <h2>Post {{ $route.params.id }}</h2>
     
-    <Post :post="post" />
+    <Post v-if="post" :post="post" />
+
+    <div v-else>Unknown Post</div>
     
     <Head>
       <Title>Post {{ $route.params.id }}</Title>

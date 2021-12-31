@@ -1,8 +1,8 @@
 interface Config {
-  about?: string,
-  api_base?: string,
-  copyrights?: string,
-  privacy_policy?: string
+  about?: string;
+  api_base?: string;
+  copyrights?: string;
+  privacy_policy?: string;
 }
 
 export const useConfig = () => {

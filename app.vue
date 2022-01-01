@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import { useConfig } from './composables/config';
   const { config } = useConfig();
+  import { usePosts } from './composables/posts';
+  const { cache } = usePosts();
 
   const APIUrl = "https://deretter.microcms.io/api/v1/config";
   const APIKey= "f56237c7-77d5-4e1d-932a-d19eb2b58496";
@@ -23,6 +25,8 @@
   <div>
     <NuxtPage />
     <footer>
+      <h3>Cached Endpoints</h3>
+      <div v-for="c in Object.keys(cache)">{{ c }}</div>
       <h3>Privacy Policy</h3>
       {{ config.privacy_policy }}
       <h3>Copyright</h3>

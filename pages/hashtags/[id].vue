@@ -6,19 +6,19 @@
 
   const route = useRoute();
 
-  const endpoint = `${config.value.api_base}derepo/statuses?idolId=${route.params.id}`
+  const endpoint = `${config.value.api_base}derepo/statuses?hashtagId=${route.params.id}`
   const posts = await getPosts(endpoint);
 </script>
 
 <template>
   <p>
-    <h2>User {{ $route.params.id }}</h2>
+    <h2>Hashtag {{ $route.params.id }}</h2>
 
     <Post v-for="post in posts" :post="post" />
 
     <Head>
-      <Title>User {{ $route.params.id }}</Title>
-      <Meta name="description" :content="`User ${ $route.params.id }`" />
+      <Title>Hashtag {{ $route.params.id }}</Title>
+      <Meta name="description" :content="`Hashtag ${ $route.params.id }`" />
     </Head>
   </p>
 </template>

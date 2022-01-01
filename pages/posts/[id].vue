@@ -1,17 +1,22 @@
 <script lang="ts" setup>
-import { usePosts } from '../../composables/posts';
-const { posts } = usePosts();
+  import { useConfig } from '../../composables/config';
+  const { config } = useConfig();
+  import { usePosts } from '../../composables/posts';
+  const { getPost } = usePosts();
 
-const route = useRoute();
+  const route = useRoute();
 
-const post = posts.value.find(post => String(post.id) === route.params.id)
+  const endpoint = `${config.value.api_base}derepo/statuses/${route.params.id}`
+  const post = await getPost(endpoint);
 </script>
 
 <template>
   <p>
     <h2>Post {{ $route.params.id }}</h2>
     
-    <Post :post="post" />
+    <Post v-if="post" :post="post" />
+
+    <div v-else>Unknown Post</div>
     
     <Head>
       <Title>Post {{ $route.params.id }}</Title>

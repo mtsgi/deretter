@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+  import { useConfig } from '../composables/config';
+  const { config } = useConfig();
   import { usePosts } from '../composables/posts';
   const { cache, getPosts } = usePosts();
 
-  const posts = await getPosts("derepo/statuses?maxResults=100");
+  const endpoint = `${config.value.api_base}derepo/statuses?maxResults=100`
+  const posts = await getPosts(endpoint);
 </script>
 
 <template>
@@ -12,7 +15,7 @@
     <Post v-for="post in posts" :post="post" />
     
     <h3>Cached APIs</h3>
-    {{ Object.keys(cache) }}
+    <div v-for="c in Object.keys(cache)">{{ c }}</div>
 
     <Head>
       <Title>TOP | deretter</Title>

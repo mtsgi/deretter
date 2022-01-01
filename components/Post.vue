@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-import { Post } from '../composables/posts';
+  import { useConfig } from '../composables/config';
+  const { config } = useConfig();
 
-const props = defineProps<{
-  post: Post
-}>();
+  import { Post } from '../composables/posts';
+
+  const props = defineProps<{
+    post: Post
+  }>();
 </script>
 
 <template>
@@ -20,8 +23,21 @@ const props = defineProps<{
       </NuxtLink>
     </div>
 
-    <NuxtLink :to="`/posts/${props.post.id}`">
-      {{ props.post.postTime }}
-    </NuxtLink>
+    <a
+      v-if="props.post.imagePath"
+      :href="`${config.assets_base}${props.post.imagePath}.png`"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      [画像]
+    </a>
+
+    <div>
+      <NuxtLink :to="`/posts/${props.post.id}`">
+        {{ props.post.postTime }}
+      </NuxtLink>
+    </div>
+
+    <hr />
   </article>
 </template>

@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import { usePosts } from '../../composables/posts';
-const { getPosts } = usePosts();
+  import { useConfig } from '../../composables/config';
+  const { config } = useConfig();
+  import { usePosts } from '../../composables/posts';
+  const { getPosts } = usePosts();
 
-const route = useRoute();
+  const route = useRoute();
 
-const posts = await getPosts(`derepo/statuses?hashtagId=${route.params.id}`);
+  const endpoint = `${config.value.api_base}derepo/statuses?hashtagId=${route.params.id}`
+  const posts = await getPosts(endpoint);
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 interface Config {
   about?: string;
   api_base?: string;
+  assets_base?: string;
   copyrights?: string;
   privacy_policy?: string;
 }

@@ -1,6 +1,3 @@
-import { useConfig } from '../composables/config';
-const { config } = useConfig();
-
 interface Hashtag {
   id: number;
   word: string;
@@ -14,6 +11,7 @@ export interface Post {
   name: string;
   message: string;
   iconPath: string;
+  imagePath?: string;
   postTime: string;
   hashtags: Hashtag[];
 }
@@ -27,8 +25,7 @@ export const usePosts = () => {
       console.log(`cache[${path}]`, cache.value[path]);
       if (cache.value[path]) return cache.value[path];
       else {
-        const url = `${config.value.api_base}${path}`;
-        await fetch(url, {
+        await fetch(path, {
           method: "GET",
           mode: "cors"
         })
@@ -43,8 +40,7 @@ export const usePosts = () => {
       console.log(`cache[${path}]`, cache.value[path]);
       if (cache.value[path]) return cache.value[path];
       else {
-        const url = `${config.value.api_base}${path}`;
-        await fetch(url, {
+        await fetch(path, {
           method: "GET",
           mode: "cors"
         })

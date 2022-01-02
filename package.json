@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "nuxt3": "latest"
+  },
+  "dependencies": {
+    "sass": "^1.45.2"
   }
 }

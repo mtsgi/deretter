@@ -30,14 +30,11 @@
     <div class="post__message">
       <p v-for="p in paragraphs">{{ p }}</p>
 
-      <a
+      <img
         v-if="stampPath"
-        :href="`${config.assets_base}${stampPath}.png`"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        [スタンプ]
-      </a>
+        :src="`${config.assets_base}${stampPath}.png`"
+        referrerpolicy="no-referrer"
+      />
     </div>
 
     <div class="post__hashtags">
@@ -46,14 +43,12 @@
       </NuxtLink>
     </div>
 
-    <a
+    <img
       v-if="props.post.imagePath"
-      :href="`${config.assets_base}${props.post.imagePath}.png`"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      [画像]
-    </a>
+      :src="`${config.assets_base}${props.post.imagePath}.png`"
+      class="post__image"
+      referrerpolicy="no-referrer"
+    />
 
     <div class="post__detail">
       <NuxtLink :to="`/posts/${props.post.id}`">
@@ -78,6 +73,12 @@
   &__hashtags {
     display: flex;
     gap: 8px;
+  }
+
+  &__image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 8px;
   }
 
   &__detail {

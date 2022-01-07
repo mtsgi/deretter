@@ -18,38 +18,56 @@ export interface Post {
 
 export const usePosts = () => {
   const cache = useState<Object>('posts', () => new Object());
+  const hashtags = useState<Hashtag[]>('hashtags', () => null);
 
   return {
     cache,
-    getPosts: async (path: string): Promise<Post[]> => {
-      console.log(`cache[${path}]`, cache.value[path]);
-      if (cache.value[path]) return cache.value[path];
+    getPosts: async (url: string): Promise<Post[]> => {
+      console.log(`cache[${url}]`, cache.value[url]);
+      if (cache.value[url]) return cache.value[url];
       else {
-        await fetch(path, {
+        await fetch(url, {
           method: "GET",
           mode: "cors"
         })
           .then(res => res.json())
           .then(data => {
-            cache.value[path] = data;
+            cache.value[url] = data;
           });
       }
-      return cache.value[path];
+      return cache.value[url];
     },
-    getPost: async (path: string): Promise<Post> => {
-      console.log(`cache[${path}]`, cache.value[path]);
-      if (cache.value[path]) return cache.value[path];
+    getPost: async (url: string): Promise<Post> => {
+      console.log(`cache[${url}]`, cache.value[url]);
+      if (cache.value[url]) return cache.value[url];
       else {
-        await fetch(path, {
+        await fetch(url, {
           method: "GET",
           mode: "cors"
         })
           .then(res => res.json())
           .then(data => {
-            cache.value[path] = data;
+            cache.value[url] = data;
           });
       }
-      return cache.value[path];
+      return cache.value[url];
+    },
+
+    hashtags,
+    getHashtags: async (url: string): Promise<Hashtag[]> => {
+      console.log('hahshtags cache', hashtags.value);
+      if (hashtags.value !== null) return hashtags.value;
+      else {
+        await fetch(url, {
+          method: "GET",
+          mode: "cors"
+        })
+          .then(res => res.json())
+          .then(data => {
+            hashtags.value = data;
+          });
+      }
+      return hashtags.value
     }
   }
 }

@@ -13,9 +13,11 @@
   useMeta({
     title,
     meta: [
-      { name: 'og:title', content: title },
-      { name: 'description', content: post.message },
-      { name: 'og:description', content: post.message }
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'twitter:text:title', name: 'twitter:text:title', content: title },
+      { hid: 'description', name: 'description', content: post.message },
+      { hid: 'og:description', name: 'og:description', content: post.message }
     ]
   });
 </script>

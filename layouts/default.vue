@@ -35,7 +35,7 @@ header {
   a {
     font-weight: bold;
     text-decoration: none;
-      color: #555555;
+    color: #555555;
     padding: 8px;
 
     &.router-link-active {

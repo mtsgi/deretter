@@ -6,6 +6,13 @@
 
   const endpoint = `${config.value.api_base}derepo/statuses?maxResults=100`
   const posts = await getPosts(endpoint);
+
+  useMeta({
+    meta: [
+      { name: 'description', content: 'Timeline - deretter' }
+    ],
+    title: 'Timeline | deretter'
+  });
 </script>
 
 <template>
@@ -13,9 +20,5 @@
     <h2>Timeline</h2>
 
     <Post v-for="post in posts" :post="post" />
-
-    <Head>
-      <Title>TOP</Title>
-    </Head>
   </main>
 </template>

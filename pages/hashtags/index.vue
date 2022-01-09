@@ -25,7 +25,7 @@
     </ul>
 
     <Head>
-      <Title>Hashtags</Title>
+      <Title>Hashtags | deretter</Title>
       <Meta name="description" content="Hashtags" />
     </Head>
   </p>

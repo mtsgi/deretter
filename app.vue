@@ -7,8 +7,13 @@
   // Set meta tags
   useMeta({
     meta: [
-      { name: 'referrer', content: 'no-referrer' }
-    ]
+      { name: 'referrer', content: 'no-referrer' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'og:url', content: location.href }
+    ],
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#'
+    }
   })
 
   const APIUrl = "https://deretter.microcms.io/api/v1/config";

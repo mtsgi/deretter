@@ -1,7 +1,27 @@
+<script lang="ts" setup>
+interface Link {
+  path: string;
+  label: string;
+}
+
+const links:Link[] = [
+  {
+    path: "/",
+    label: "TOP"
+  },
+  {
+    path: "/hashtags",
+    label: "Hashtags"
+  }
+]
+</script>
+
 <template>
   <div>
     <header>
-      <NuxtLink to="/">TOP</NuxtLink>
+      <NuxtLink v-for="link in links" :to="link.path">
+        {{ link.label }}
+      </NuxtLink>
     </header>
     <slot />
   </div>
@@ -15,8 +35,12 @@ header {
   a {
     font-weight: bold;
     text-decoration: none;
-    color: rgb(30, 156, 241);
+    color: #555555;
     padding: 8px;
+
+    &.router-link-active {
+      color: rgb(30, 156, 241);
+    }
   }
 }
 </style>

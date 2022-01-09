@@ -8,19 +8,24 @@
 
   const endpoint = `${config.value.api_base}derepo/statuses/${route.params.id}`
   const post = await getPost(endpoint);
+
+  const title = `${post.name}: ${post.message.replaceAll('<br>', '').substring(0, 20)} | deretter`
+  useMeta({
+    title,
+    meta: [
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'twitter:text:title', name: 'twitter:text:title', content: title },
+      { hid: 'description', name: 'description', content: post.message },
+      { hid: 'og:description', name: 'og:description', content: post.message }
+    ]
+  });
 </script>
 
 <template>
   <p>
-    <h2>Post {{ $route.params.id }}</h2>
-    
     <Post v-if="post" :post="post" />
 
     <div v-else>Unknown Post</div>
-    
-    <Head>
-      <Title>Post {{ $route.params.id }}</Title>
-      <Meta name="description" :content="`Post ${ $route.params.id }`" />
-    </Head>
   </p>
 </template>

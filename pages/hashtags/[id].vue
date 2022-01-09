@@ -8,6 +8,18 @@
 
   const endpoint = `${config.value.api_base}derepo/statuses?hashtagId=${route.params.id}`
   const posts = await getPosts(endpoint);
+
+  const title = `Hashtag ${ route.params.id } | deretter`;
+  useMeta({
+    title,
+    meta: [
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'twitter:text:title', name: 'twitter:text:title', content: title },
+      { hid: 'description', content: 'deretter Hashtag', name: 'description' },
+      { hid: 'og:description', name: 'og:description', content: 'deretter Hashtag' }
+    ]
+  });
 </script>
 
 <template>
@@ -15,10 +27,5 @@
     <h2>Hashtag {{ $route.params.id }}</h2>
 
     <Post v-for="post in posts" :post="post" />
-
-    <Head>
-      <Title>Hashtag {{ $route.params.id }}</Title>
-      <Meta name="description" :content="`Hashtag ${ $route.params.id }`" />
-    </Head>
   </p>
 </template>

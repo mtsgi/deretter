@@ -4,6 +4,17 @@
   import { usePosts } from './composables/posts';
   const { cache } = usePosts();
 
+  // Set meta tags
+  useMeta({
+    meta: [
+      { name: 'referrer', content: 'no-referrer' },
+      { name: 'twitter:card', content: 'summary' },
+    ],
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#'
+    }
+  })
+
   const APIUrl = "https://deretter.microcms.io/api/v1/config";
   const APIKey= "f56237c7-77d5-4e1d-932a-d19eb2b58496";
 

@@ -8,7 +8,7 @@
   useMeta({
     meta: [
       { name: 'referrer', content: 'no-referrer' },
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary' }
     ],
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'

@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-  import { useConfig } from '../../composables/config';
   const { config } = useConfig();
-  import { usePosts } from '../../composables/posts';
   const { getHashtags } = usePosts();
 
   const endpoint = `${config.value.api_base}derepo/hashtags`

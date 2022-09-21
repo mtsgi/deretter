@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-  import { useConfig } from '../../composables/config';
   const { config } = useConfig();
-  import { usePosts } from '../../composables/posts';
   const { getPosts } = usePosts();
 
   const route = useRoute();
@@ -12,7 +10,7 @@
   const username = posts.at(0)?.name;
 
   const title = `${username} | deretter`;
-  useMeta({
+  useHead({
     title,
     meta: [
       { hid: 'og:title', name: 'og:title', content: title },

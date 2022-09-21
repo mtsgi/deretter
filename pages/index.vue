@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-  import { useConfig } from '../composables/config';
   const { config } = useConfig();
-  import { usePosts } from '../composables/posts';
   const { getPosts } = usePosts();
 
   const endpoint = `${config.value.api_base}derepo/statuses?maxResults=100`
   const posts = await getPosts(endpoint);
 
   const title = 'Timeline | deretter';
-  useMeta({
+  useHead({
     meta: [
       { hid: 'og:title', name: 'og:title', content: title },
       { hid: 'twitter:title', name: 'twitter:title', content: title },

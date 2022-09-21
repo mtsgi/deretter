@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-  import { useConfig } from './composables/config';
   const { config } = useConfig();
-  import { usePosts } from './composables/posts';
   const { cache } = usePosts();
 
   // Set meta tags
-  useMeta({
+  useHead({
     meta: [
       { name: 'referrer', content: 'no-referrer' },
       { name: 'twitter:card', content: 'summary' }
@@ -33,7 +31,7 @@
 </script>
 
 <template>
-  <div>
+  <NuxtLayout>
     <NuxtPage />
     <footer>
       <h3>Cached Endpoints</h3>
@@ -45,5 +43,5 @@
       <h3>About</h3>
       {{ config.about }}
     </footer>
-  </div>
+  </NuxtLayout>
 </template>

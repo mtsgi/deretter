@@ -62,6 +62,9 @@
         <NuxtLink :to="`/posts/${props.post.id}`">
           {{ props.post.postTime }}
         </NuxtLink>
+        <NuxtLink :to="`/conversations/${props.post.groupId}`">
+          View conversation
+        </NuxtLink>
       </div>
     </div>
   </article>
@@ -115,6 +118,7 @@
     margin-bottom: 8px;
     a {
       color: #9ea6ac;
+      margin-right: 8px;
     }
   }
 }
